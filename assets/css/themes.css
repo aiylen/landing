@@ -1,0 +1,64 @@
+/* ============================================================
+   themes.css — color themes + dark/light mode
+   Base brand tokens live here as CSS custom properties.
+   ============================================================ */
+
+:root{
+  --font-display:'Sora', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+
+  --radius-sm:10px;
+  --radius:16px;
+  --radius-lg:22px;
+
+  --shadow-sm:0 1px 2px rgba(30,27,46,.06);
+  --shadow-md:0 8px 24px -8px rgba(30,27,46,.16);
+  --shadow-lg:0 24px 48px -16px rgba(30,27,46,.28);
+
+  --bg:#F7F5FB;
+  --surface:#FFFFFF;
+  --surface-2:#F1EEF9;
+  --text:#1E1B2E;
+  --text-dim:#6C6784;
+  --border:rgba(30,27,46,.09);
+
+  --success:#17A398;
+  --warning:#F5A623;
+  --danger:#FF6584;
+
+  --primary:#6C5CE7;
+  --primary-dim:#8477EE;
+  --primary-ink:#2B1F73;
+  --accent:#17A398;
+}
+
+/* ---- color themes (swap primary/accent) ---- */
+[data-theme="violet"]{
+  --primary:#6C5CE7; --primary-dim:#8477EE; --primary-ink:#2B1F73; --accent:#17A398;
+}
+[data-theme="green"]{
+  --primary:#189A6E; --primary-dim:#33B587; --primary-ink:#0B4A36; --accent:#F5A623;
+}
+[data-theme="blue"]{
+  --primary:#3768E8; --primary-dim:#5B85F0; --primary-ink:#1A2E6B; --accent:#FF6584;
+}
+[data-theme="pink"]{
+  --primary:#E24C8B; --primary-dim:#EC72A5; --primary-ink:#6E1F42; --accent:#17A398;
+}
+[data-theme="orange"]{
+  --primary:#E8721F; --primary-dim:#F19042; --primary-ink:#7A3407; --accent:#3768E8;
+}
+
+/* ---- dark mode ---- */
+[data-mode="dark"]{
+  --bg:#161320;
+  --surface:#1E1A2C;
+  --surface-2:#262138;
+  --text:#F1EEF9;
+  --text-dim:#9C97B5;
+  --border:rgba(255,255,255,.08);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 8px 24px -8px rgba(0,0,0,.5);
+  --shadow-lg:0 24px 48px -16px rgba(0,0,0,.6);
+}
