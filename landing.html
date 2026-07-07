@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="violet">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Planner — Premium All-in-One Digital Planner</title>
+<meta name="description" content="One beautiful browser-based planner for your daily life, budget, habits, meals and goals. Dark mode, 5 themes, works on any device.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/themes.css">
+<style>
+/* ============================================================
+   landing.html — self-contained Etsy sales page styles
+   Reuses the product's brand tokens from assets/css/themes.css
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;font-family:var(--font-body);background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-family:var(--font-display);margin:0;letter-spacing:-.01em;}
+p{margin:0;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:color-mix(in srgb, var(--primary) 12%, transparent);
+  color:var(--primary-ink);
+  padding:6px 14px;border-radius:99px;font-size:12.5px;font-weight:700;
+  letter-spacing:.02em;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--primary);}
+
+/* ---- top promo bar ---- */
+.promo-bar{
+  background:var(--text);color:#fff;text-align:center;
+  font-size:12.5px;font-weight:600;padding:9px 16px;letter-spacing:.01em;
+}
+.promo-bar span{color:#fff;opacity:.75;font-weight:500;}
+
+/* ---- nav ---- */
+.nav{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border, rgba(30,27,46,.08));
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto;}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:15.5px;}
+.nav-mark{width:30px;height:30px;border-radius:9px;background:conic-gradient(from 210deg,var(--primary),var(--accent),var(--primary));position:relative;}
+.nav-mark::after{content:'';position:absolute;inset:4px;border-radius:6px;background:var(--bg);}
+.nav-cta{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dim));
+  color:#fff;border:none;padding:10px 20px;border-radius:10px;
+  font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 8px 20px -8px color-mix(in srgb, var(--primary) 60%, transparent);
+}
+
+/* ---- hero ---- */
+.hero{padding:64px 0 40px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.hero h1{font-size:47px;line-height:1.08;margin:18px 0 18px;}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero p.sub{font-size:16.5px;color:var(--text-dim);line-height:1.6;max-width:480px;}
+.hero-ctas{display:flex;align-items:center;gap:14px;margin-top:28px;flex-wrap:wrap;}
+.btn-cta{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dim));color:#fff;
+  border:none;padding:16px 30px;border-radius:13px;font-size:15.5px;font-weight:700;
+  cursor:pointer;box-shadow:0 16px 32px -12px color-mix(in srgb, var(--primary) 65%, transparent);
+  transition:transform .15s ease;
+}
+.btn-cta:hover{transform:translateY(-2px);}
+.btn-cta.lg{padding:19px 38px;font-size:17px;}
+.price-note{font-size:12.5px;color:var(--text-dim);}
+.trust-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-dim);font-weight:600;}
+.trust-item svg{width:15px;height:15px;color:var(--success);flex:none;}
+
+.hero-visual{position:relative;}
+.browser-frame{
+  border-radius:16px;overflow:hidden;background:var(--surface);
+  box-shadow:0 40px 80px -30px rgba(30,20,60,.35);
+  border:1px solid rgba(0,0,0,.06);
+  transform:perspective(1400px) rotateY(-6deg) rotateX(2deg);
+}
+.browser-chrome{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#EFEDF6;}
+.browser-chrome span{width:9px;height:9px;border-radius:50%;background:#DAD6E8;}
+.browser-frame img{display:block;width:100%;}
+.floating-card{
+  position:absolute;background:var(--surface);border-radius:14px;padding:12px 16px;
+  box-shadow:0 20px 40px -16px rgba(30,20,60,.3);display:flex;align-items:center;gap:10px;
+  font-size:12.5px;font-weight:700;
+}
+.floating-card svg{width:16px;height:16px;}
+.fc-1{top:8%;left:-8%;color:var(--success);}
+.fc-2{bottom:10%;right:-6%;color:var(--primary);}
+
+/* ---- pain points ---- */
+.section{padding:74px 0;}
+.section-head{text-align:center;max-width:640px;margin:0 auto 44px;}
+.section-head h2{font-size:32px;margin:14px 0 12px;}
+.section-head p{color:var(--text-dim);font-size:15.5px;line-height:1.6;}
+
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.pain-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--surface);border:1px solid rgba(30,27,46,.07);
+  padding:16px 18px;border-radius:14px;font-size:14px;font-weight:600;
+}
+.pain-item svg{width:19px;height:19px;color:var(--danger);flex:none;margin-top:1px;}
+
+/* ---- solution checklist ---- */
+.solution{
+  background:linear-gradient(150deg,var(--primary-ink),var(--primary) 55%,var(--accent));
+  border-radius:28px;color:#fff;padding:50px 46px;margin-top:20px;
+  position:relative;overflow:hidden;
+}
+.solution::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.08);}
+.solution h2{font-size:27px;margin-bottom:22px;}
+.check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 26px;position:relative;}
+.check-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;}
+.check-item svg{width:18px;height:18px;flex:none;color:#8FF7DA;}
+
+/* ---- feature showcase rows ---- */
+.showcase-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:54px 0;border-top:1px solid rgba(30,27,46,.08);}
+.showcase-row.reverse .showcase-text{order:2;}
+.showcase-row.reverse .showcase-img{order:1;}
+.showcase-tag{color:var(--primary-ink);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;}
+.showcase-text h3{font-size:25px;margin:10px 0 12px;}
+.showcase-text p{color:var(--text-dim);font-size:14.5px;line-height:1.65;margin-bottom:14px;}
+.mini-list{display:flex;flex-direction:column;gap:9px;}
+.mini-list li{list-style:none;display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;}
+.mini-list svg{width:16px;height:16px;color:var(--success);flex:none;}
+.showcase-img{border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -24px rgba(30,20,60,.3);border:1px solid rgba(0,0,0,.06);}
+.showcase-img img{cursor:zoom-in;transition:transform .3s ease;}
+.showcase-img:hover img{transform:scale(1.02);}
+
+/* ---- theme strip ---- */
+.theme-strip{text-align:center;}
+.theme-shots{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px;}
+.theme-shots img{border-radius:12px;box-shadow:0 16px 32px -16px rgba(30,20,60,.28);border:1px solid rgba(0,0,0,.06);cursor:zoom-in;}
+.theme-dot-row{display:flex;justify-content:center;gap:8px;margin-top:16px;}
+.theme-dot-row span{width:16px;height:16px;border-radius:50%;}
+
+/* ---- feature banner grid ---- */
+.banner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.banner-card{
+  background:var(--surface);border:1px solid rgba(30,27,46,.07);border-radius:16px;
+  padding:22px;display:flex;flex-direction:column;gap:10px;
+}
+.banner-icon{width:42px;height:42px;border-radius:11px;background:color-mix(in srgb, var(--primary) 12%, transparent);color:var(--primary-ink);display:flex;align-items:center;justify-content:center;}
+.banner-icon svg{width:20px;height:20px;}
+.banner-card h4{font-size:14.5px;}
+.banner-card p{font-size:13px;color:var(--text-dim);line-height:1.5;}
+
+/* ---- included / modules strip ---- */
+.modules-strip{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.module-chip{
+  background:var(--surface);border:1px solid rgba(30,27,46,.09);
+  padding:9px 16px;border-radius:99px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.module-chip span{width:7px;height:7px;border-radius:50%;background:var(--primary);}
+
+/* ---- bonus ---- */
+.bonus-box{
+  display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;
+  background:var(--surface);border:1px solid rgba(30,27,46,.08);border-radius:24px;padding:44px;
+}
+.bonus-badge{display:inline-flex;align-items:center;gap:8px;background:color-mix(in srgb, var(--warning) 18%, transparent);color:#8a5a0a;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:700;}
+.bonus-box h3{font-size:24px;margin:14px 0 10px;}
+.bonus-box p{color:var(--text-dim);font-size:14.5px;line-height:1.6;}
+.bonus-list{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+.bonus-list li{list-style:none;display:flex;gap:10px;font-size:14px;font-weight:600;align-items:flex-start;}
+.bonus-list svg{width:17px;height:17px;color:var(--success);flex:none;margin-top:2px;}
+.pdf-mock{
+  background:linear-gradient(160deg,var(--surface-2),var(--surface));
+  border:1px solid rgba(30,27,46,.08);border-radius:16px;padding:26px;
+  display:flex;flex-direction:column;gap:8px;box-shadow:0 20px 40px -18px rgba(30,20,60,.2);
+}
+.pdf-mock .pg{background:#fff;border-radius:8px;padding:14px 16px;font-size:11px;color:#8b86a3;box-shadow:0 4px 10px rgba(0,0,0,.05);}
+.pdf-mock .pg b{display:block;color:var(--text);font-size:12.5px;margin-bottom:4px;}
+
+/* ---- FAQ ---- */
+.faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+.faq-item{background:var(--surface);border:1px solid rgba(30,27,46,.08);border-radius:14px;overflow:hidden;}
+.faq-q{padding:18px 20px;font-weight:700;font-size:14.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.faq-q svg{width:16px;height:16px;flex:none;transition:transform .2s ease;color:var(--text-dim);}
+.faq-item.open .faq-q svg{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:13.5px;color:var(--text-dim);line-height:1.6;}
+.faq-a-inner{padding:0 20px 18px;}
+.faq-item.open .faq-a{max-height:200px;}
+
+/* ---- final CTA ---- */
+.final-cta{
+  text-align:center;background:linear-gradient(150deg,var(--primary-ink),var(--primary) 60%,var(--accent));
+  border-radius:28px;padding:64px 32px;color:#fff;position:relative;overflow:hidden;
+}
+.final-cta::after{content:'';position:absolute;left:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.08);}
+.final-cta h2{font-size:32px;margin-bottom:14px;}
+.final-cta p{opacity:.9;max-width:480px;margin:0 auto 26px;font-size:15px;}
+.final-trust{display:flex;justify-content:center;gap:22px;margin-top:24px;flex-wrap:wrap;}
+.final-trust span{font-size:12.5px;opacity:.85;font-weight:600;}
+
+footer{padding:36px 24px;text-align:center;font-size:12.5px;color:var(--text-dim);}
+
+/* sticky mobile CTA */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:var(--surface);border-top:1px solid rgba(30,27,46,.1);
+  padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;
+  box-shadow:0 -10px 30px -14px rgba(0,0,0,.15);
+  transform:translateY(100%);transition:transform .25s ease;
+}
+.sticky-cta.show{transform:translateY(0);}
+.sticky-cta strong{font-size:13.5px;}
+.sticky-cta .btn-cta{padding:11px 20px;font-size:13.5px;}
+
+/* lightbox */
+.lightbox{
+  position:fixed;inset:0;background:rgba(15,12,26,.86);z-index:100;
+  display:none;align-items:center;justify-content:center;padding:30px;
+  cursor:zoom-out;
+}
+.lightbox.show{display:flex;}
+.lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 30px 70px rgba(0,0,0,.5);}
+
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:36px;}
+  .pain-grid{grid-template-columns:1fr;}
+  .check-grid{grid-template-columns:1fr 1fr;}
+  .showcase-row{grid-template-columns:1fr;gap:24px;}
+  .showcase-row.reverse .showcase-text{order:1;}
+  .showcase-row.reverse .showcase-img{order:2;}
+  .theme-shots{grid-template-columns:repeat(2,1fr);}
+  .banner-grid{grid-template-columns:1fr 1fr;}
+  .bonus-box{grid-template-columns:1fr;}
+  .sticky-cta{display:flex;}
+}
+@media (max-width:560px){
+  .hero h1{font-size:30px;}
+  .check-grid{grid-template-columns:1fr;}
+  .banner-grid{grid-template-columns:1fr;}
+  .theme-shots{grid-template-columns:1fr;}
+  .nav-cta{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="promo-bar">✨ Instant digital download — start planning in the next 2 minutes <span>&nbsp;·&nbsp; Lifetime access, no subscription</span></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand"><div class="nav-mark"></div>Mini Planner</div>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get Instant Access</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>All-in-one digital planner</span>
+      <h1>One planner for<br><em>your whole life.</em><br>Right in your browser.</h1>
+      <p class="sub">Stop juggling five different apps and a pile of sticky notes. Mini Planner brings your day, your budget, your habits, and your goals into one beautiful dashboard — no installs, no subscriptions, no learning curve.</p>
+      <div class="hero-ctas">
+        <button class="btn-cta lg" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get Instant Access →</button>
+      </div> <br>
+      <p class="price-note">One-time purchase · Instant download · Works on desktop, tablet &amp; phone</p>
+      <div class="trust-row">
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No installation needed</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Your data stays on your device</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Works on any device</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="browser-frame">
+        <div class="browser-chrome"><span></span><span></span><span></span></div>
+        <img src="screenshots/dashboard.png" alt="Mini Planner dashboard screenshot" class="shot">
+      </div>
+      <div class="floating-card fc-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Habit streak: 5 days
+      </div>
+      <div class="floating-card fc-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg>
+        Goal 79% complete
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PAIN POINTS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Sound familiar?</span>
+      <h2>Does this sound like you?</h2>
+      <p>Most people don't need more willpower. They need one place that actually holds everything together.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>Five different apps for tasks, budget, habits, and meals — none of them talking to each other</div>
+      <div class="pain-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>Bought a paper planner, used it for a week, and it's now a coaster</div>
+      <div class="pain-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>No real idea where your money goes every month until it's already gone</div>
+      <div class="pain-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>Habits, water, meals, self-care — you start strong, then forget to track by day 4</div>
+      <div class="pain-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>Big goals stay vague because you never break them into real steps</div>
+      <div class="pain-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>Sticky notes everywhere, and you still forget the one thing that mattered</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="wrap">
+  <div class="solution">
+    <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff;">This planner is your solution ✨</span>
+    <h2>Everything you need, in one calm dashboard.</h2>
+    <div class="check-grid">
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Interactive dashboard</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily / weekly / monthly planner</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Goal planner with progress</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Habit tracker + streaks</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Budget &amp; finance tracker</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Meal planner + grocery list</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Water tracker</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Self-care planner</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rich notes &amp; checklists</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dark mode + 5 color themes</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Auto-save, private &amp; offline</div>
+      <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Print &amp; export to PDF</div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE: Dashboard -->
+<section class="section">
+  <div class="wrap">
+    <div class="showcase-row" style="border-top:none;">
+      <div class="showcase-text">
+        <span class="showcase-tag">Overview</span>
+        <h3>Your whole day, at a glance.</h3>
+        <p>The moment you open Mini Planner, you see exactly what matters: today's top priorities, your habit streaks, your balance, and your water intake — plus a motivational nudge to start the day right.</p>
+        <ul class="mini-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Live progress rings for goals &amp; habits</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Income vs. expenses chart, updated automatically</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily motivational quote to start focused</li>
+        </ul>
+      </div>
+      <div class="showcase-img"><img src="screenshots/dashboard.png" alt="Dashboard overview" onclick="openLightbox(this.src)"></div>
+    </div>
+
+    <!-- SHOWCASE: Finance -->
+    <div class="showcase-row reverse">
+      <div class="showcase-text">
+        <span class="showcase-tag">Money</span>
+        <h3>Finally know where your money goes.</h3>
+        <p>Log income and expenses, set a savings goal, and watch your budget explain itself through clean, readable charts — no spreadsheet required.</p>
+        <ul class="mini-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Income &amp; expense breakdown by category</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Savings goal progress bar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>6-month trend so patterns jump out</li>
+        </ul>
+      </div>
+      <div class="showcase-img"><img src="screenshots/finance.png" alt="Finance tracker" onclick="openLightbox(this.src)"></div>
+    </div>
+
+    <!-- SHOWCASE: Habits -->
+    <div class="showcase-row">
+      <div class="showcase-text">
+        <span class="showcase-tag">Consistency</span>
+        <h3>Build streaks you can actually see.</h3>
+        <p>A full monthly heatmap for every habit you're building, plus streak counters that make "just one more day" a lot more tempting.</p>
+        <ul class="mini-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Add unlimited habits to track</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Monthly completion % and streaks</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One tap to check off each day</li>
+        </ul>
+      </div>
+      <div class="showcase-img"><img src="screenshots/habits.png" alt="Habit tracker" onclick="openLightbox(this.src)"></div>
+    </div>
+
+    <!-- SHOWCASE: Weekly -->
+    <div class="showcase-row reverse">
+      <div class="showcase-text">
+        <span class="showcase-tag">Planning</span>
+        <h3>Plan Monday through Sunday in minutes.</h3>
+        <p>Set weekly goals, drop tasks into each day, and jot notes for the week — then zoom into the Daily Planner for hour-by-hour scheduling from 6 AM to 10 PM.</p>
+        <ul class="mini-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Weekly goals with progress ring</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Day-by-day task columns</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Monthly calendar for the bigger picture</li>
+        </ul>
+      </div>
+      <div class="showcase-img"><img src="screenshots/weekly.png" alt="Weekly planner" onclick="openLightbox(this.src)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- THEMES -->
+<section class="section theme-strip">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Make it yours</span>
+      <h2>Dark mode. 5 color themes. Your call.</h2>
+      <p>Switch instantly between violet, green, blue, pink and orange — plus a full dark mode for late-night planning.</p>
+    </div>
+    <div class="theme-shots">
+      <img src="screenshots/theme_violet.png" alt="Violet theme" onclick="openLightbox(this.src)">
+      <img src="screenshots/theme_green.png" alt="Green theme" onclick="openLightbox(this.src)">
+      <img src="screenshots/theme_blue.png" alt="Blue theme" onclick="openLightbox(this.src)">
+      <img src="screenshots/theme_pink.png" alt="Pink theme" onclick="openLightbox(this.src)">
+      <img src="screenshots/theme_orange.png" alt="Orange theme" onclick="openLightbox(this.src)">
+    </div>
+    <div class="theme-dot-row">
+      <span style="background:#6C5CE7"></span><span style="background:#189A6E"></span><span style="background:#3768E8"></span><span style="background:#E24C8B"></span><span style="background:#E8721F"></span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE BANNERS -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="banner-grid">
+      <div class="banner-card">
+        <div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s7 8.5 7 13a7 7 0 0 1-14 0c0-4.5 7-13 7-13Z"/></svg></div>
+        <h4>100% private</h4>
+        <p>Everything saves locally in your own browser. Nothing is uploaded anywhere.</p>
+      </div>
+      <div class="banner-card">
+        <div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+        <h4>Works everywhere</h4>
+        <p>Fully responsive on desktop, tablet and phone — no app store, no installs.</p>
+      </div>
+      <div class="banner-card">
+        <div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg></div>
+        <h4>Print &amp; export</h4>
+        <p>Print any page or save it as a PDF straight from your browser.</p>
+      </div>
+      <div class="banner-card">
+        <div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg></div>
+        <h4>Demo data included</h4>
+        <p>Opens with realistic sample data already filled in — see it working immediately.</p>
+      </div>
+      <div class="banner-card">
+        <div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg></div>
+        <h4>Interactive charts</h4>
+        <p>Real charts for your budget and habits, powered by live data as you type.</p>
+      </div>
+      <div class="banner-card">
+        <div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></div>
+        <h4>Dark mode</h4>
+        <p>Easy on the eyes for evening planning sessions, one click away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES INCLUDED -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head"><h2 style="font-size:24px;">11 planning modules, one download</h2></div>
+    <div class="modules-strip">
+      <div class="module-chip"><span></span>Dashboard</div>
+      <div class="module-chip"><span></span>Daily Planner</div>
+      <div class="module-chip"><span></span>Weekly Planner</div>
+      <div class="module-chip"><span></span>Monthly Planner</div>
+      <div class="module-chip"><span></span>Goal Planner</div>
+      <div class="module-chip"><span></span>Habit Tracker</div>
+      <div class="module-chip"><span></span>Finance Tracker</div>
+      <div class="module-chip"><span></span>Meal Planner</div>
+      <div class="module-chip"><span></span>Water Tracker</div>
+      <div class="module-chip"><span></span>Self-Care Planner</div>
+      <div class="module-chip"><span></span>Notes</div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<section class="section">
+  <div class="wrap">
+    <div class="bonus-box">
+      <div>
+        <span class="bonus-badge">🎁 Included free</span>
+        <h3>A step-by-step User Guide, so you're never stuck.</h3>
+        <p>A clean, printable PDF walks you through every module — from your first login to exporting your first weekly report.</p>
+        <ul class="bonus-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Quick-start walkthrough for every module</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tips for themes, dark mode &amp; printing</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>FAQ &amp; troubleshooting section</li>
+        </ul>
+      </div>
+      <div class="pdf-mock">
+        <div class="pg"><b>01 · Getting Started</b>Open index.html in any browser — that's it.</div>
+        <div class="pg"><b>02 · Your Dashboard</b>Understand streaks, rings &amp; your daily quote.</div>
+        <div class="pg"><b>03 · Budget &amp; Habits</b>Log income, expenses and daily habits.</div>
+        <div class="pg"><b>04 · Themes &amp; Export</b>Switch themes, print, or save as PDF.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Questions</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq" id="faq">
+      <div class="faq-item">
+        <div class="faq-q">Do I need to install anything?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">No installation, no account, and no app store. You'll download a folder — just open <code>index.html</code> in Chrome, Safari, Edge or Firefox and start planning.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Will my data be saved if I close the tab?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes — everything auto-saves to your browser's local storage on your own device, so it's there next time you open the same file in the same browser.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does it work on my phone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. The layout is fully responsive and adapts to phones, tablets and desktops.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use this for a small business or just myself?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Both! It's built for personal daily planning, but the budget, notes and goal tools work just as well for solo entrepreneurs and freelancers.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this a subscription?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">No. It's a one-time digital download that's yours to keep and reuse forever.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="wrap" id="cta" style="padding-bottom:80px;">
+  <div class="final-cta">
+    <span class="eyebrow" style="background:rgba(255,255,255,.15);color:#fff;">Ready when you are</span>
+    <h2>Give yourself the planner that finally sticks.</h2>
+    <p>One download. Every part of your life, organized in a single calm dashboard.</p>
+    <button class="btn-cta lg" style="background:#fff;color:var(--primary-ink);box-shadow:0 16px 40px rgba(0,0,0,.25);" onclick="alert('Connect this button to your Etsy checkout / listing link.')">Get Instant Access →</button>
+    <div class="final-trust">
+      <span>⚡ Instant download</span>
+      <span>🔒 Private &amp; local</span>
+      <span>💜 One-time payment</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Mini Planner — Premium Digital Planner · Built for people who want one place for everything.
+</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <strong>Mini Planner — one-time download</strong>
+  <button class="btn-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Get Access</button>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click', ()=>{
+    const item = q.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// Sticky mobile CTA appears after hero
+const sticky = document.getElementById('stickyCta');
+const heroEl = document.querySelector('.hero');
+window.addEventListener('scroll', ()=>{
+  const past = window.scrollY > heroEl.offsetHeight;
+  sticky.classList.toggle('show', past);
+});
+
+// Lightbox for screenshots
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('show');
+}
+</script>
+</body>
+</html>
